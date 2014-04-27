@@ -1,51 +1,25 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title>Drinks and Stuff</title>
-        <meta name="viewport" content="width=device-width">
+ ---
+layout: default
+title: Drinks and Stuff
+---
 
-        <!-- syntax highlighting CSS -->
-        <link rel="stylesheet" href="/css/syntax.css">
-
-        <!-- Custom CSS -->
-        <link rel="stylesheet" href="/css/main.css">
-
-    </head>
-    <body>
-
-        <div class="site">
-          <div class="header">
-            <h1 class="title"><a href="/">Drinks and Stuff</a></h1>
-            <a class="extra" href="/">home</a>
-          </div>
-
-          <div id="home">
+<div id="home">
   <h1>Posts</h1>
   <ul class="posts">
-    
-      <li><span>27 Apr 2014</span> &raquo; <a href="/jekyll/update/2014/04/27/welcome-to-jekyll.html">Welcome to Jekyll!</a></li>
-    
+    {% for post in site.posts %}
+      <li>
+<span>
+<!-- Whitespace added for readability -->
+{% assign d = page.date | date: "%-d"  %}
+{{ page.date | date: "%B" }} 
+{% case d %}
+  {% when '1' or '21' or '31' %}{{ d }}st
+  {% when '2' or '22' %}{{ d }}nd
+  {% when '3' or '23' %}{{ d }}rd
+  {% else %}{{ d }}th
+  {% endcase %}, 
+{{ page.date | date: "%Y" }}
+</span> &raquo; <a href="{{ post.url }}">{{ post.title }}</a></li>
+    {% endfor %}
   </ul>
 </div>
-
-
-          <div class="footer">
-            <div class="contact">
-              <p>
-                Devin Smith<br />
-                Developer<br />
-                thundza@gmail.com
-              </p>
-            </div>
-            <div class="contact">
-              <p>
-                <a href="https://github.com/devinrsmith">github.com/devinrsmith</a><br />
-              </p>
-            </div>
-          </div>
-        </div>
-
-    </body>
-</html>
